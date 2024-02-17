@@ -20,7 +20,7 @@ def get_big_mac_price_by_country(country_code):
 def get_the_cheapest_big_mac_price_by_year(year):
     pass
     query_cheapest = df[df['date'].str.startswith(year)]
-    cheap_row = query_cheapest.loc[[query_cheapest['dollar_price'].idxmin()]]
+    cheap_row = query_cheapest.loc[query_cheapest['dollar_price'].idxmin()]
     name_of_country = cheap_row['name']
     country_code = cheap_row['iso_a3']
     dollar_price = cheap_row[ 'dollar_price']
@@ -30,7 +30,7 @@ def get_the_cheapest_big_mac_price_by_year(year):
 def get_the_most_expensive_big_mac_price_by_year(year):
     pass
     query_mexpensive = df[df['date'].str.startswith(year)]
-    cheap_row = query_mexpensive.loc[[query_mexpensive['dollar_price'].idxmax()]]
+    cheap_row = query_mexpensive.loc[query_mexpensive['dollar_price'].idxmax()]
     name_of_country = cheap_row['name']
     country_code = cheap_row['iso_a3']
     dollar_price = cheap_row[ 'dollar_price']
@@ -39,8 +39,8 @@ def get_the_most_expensive_big_mac_price_by_year(year):
 
 if __name__ == "__main__":
     # pass
+    get_big_mac_price_by_year(str(input("Enter year: ")), input('Enter country code: '))
     get_big_mac_price_by_country((input("Enter country code: ")))
-    get_big_mac_price_by_year(input("Enter year: "), input('Enter country code: '))
-    get_the_cheapest_big_mac_price_by_year(input('Enter year: '))
-    get_the_most_expensive_big_mac_price_by_year(input('Enter year: '))
+    get_the_cheapest_big_mac_price_by_year(str(input('Enter year: ')))
+    get_the_most_expensive_big_mac_price_by_year(str(input('Enter year: ')))
     
