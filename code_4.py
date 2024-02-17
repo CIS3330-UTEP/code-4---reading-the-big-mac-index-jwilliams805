@@ -7,6 +7,9 @@ def get_big_mac_price_by_year(year,country_code):
     pass
     query_year = df[(df['iso_a3']== country_code.upper()) & (df['date'].startswith(year))]
     rmp_year = round(query_year ['dollar_price'].mean(),2)
+    print (rmp_year)
+    return rmp_year
+
 def get_big_mac_price_by_country(country_code):
     pass
     query_country = df[df['iso_a3'] == country_code.upper()]
@@ -15,10 +18,22 @@ def get_big_mac_price_by_country(country_code):
     return rmp_country
 
 def get_the_cheapest_big_mac_price_by_year(year):
-    pass # Remove this line and code your function
+    pass
+    query_cheapest = df[df['date'].startswith(year)]
+    cheap_row = query_cheapest.iterrows([query_cheapest['dollar_price'].idxmin()])
+    name_of_country = cheap_row['name']
+    country_code = cheap_row['iso_a3']
+    dollar_price = cheap_row[ 'dollar_price']
+    return f"{name_of_country}({country_code}): ${dollar_price:.2f}"
 
 def get_the_most_expensive_big_mac_price_by_year(year):
-    pass # Remove this line and code your function
+    pass
+    query_cheapest = df[df['date'].startswith(year)]
+    cheap_row = query_cheapest.iterrows([query_cheapest['dollar_price'].idxmax()])
+    name_of_country = cheap_row['name']
+    country_code = cheap_row['iso_a3']
+    dollar_price = cheap_row[ 'dollar_price']
+    return f"{name_of_country}({country_code}): ${dollar_price:.2f}"
 
 if __name__ == "__main__":
     # pass
