@@ -5,7 +5,7 @@ df = pd.read_csv(big_mac_file)
 
 def get_big_mac_price_by_year(year,country_code):
     pass
-    query_year = df[(df['iso_a3']== country_code.upper()) & (df['date'].str.startswith(year))]
+    query_year = df[(df['iso_a3']== country_code.upper()) & (df['date'].str.startswith(str(year)))]
     rmp_year = round(query_year ['dollar_price'].mean(),2)
     print (rmp_year)
     return rmp_year
@@ -19,7 +19,7 @@ def get_big_mac_price_by_country(country_code):
 
 def get_the_cheapest_big_mac_price_by_year(year):
     pass
-    query_cheapest = df[df['date'].str.startswith(year)]
+    query_cheapest = df[df['date'].str.startswith(str(year))]
     cheap_row = query_cheapest.loc[query_cheapest['dollar_price'].idxmin()]
     name_of_country = cheap_row['name']
     country_code = cheap_row['iso_a3']
@@ -29,7 +29,7 @@ def get_the_cheapest_big_mac_price_by_year(year):
 
 def get_the_most_expensive_big_mac_price_by_year(year):
     pass
-    query_mexpensive = df[df['date'].str.startswith(year)]
+    query_mexpensive = df[df['date'].str.startswith(str(year))]
     cheap_row = query_mexpensive.loc[query_mexpensive['dollar_price'].idxmax()]
     name_of_country = cheap_row['name']
     country_code = cheap_row['iso_a3']
