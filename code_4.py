@@ -5,15 +5,19 @@ df = pd.read_csv(big_mac_file)
 
 def get_big_mac_price_by_year(year,country_code):
     pass
-    query_year = df[(df['iso_a3']== country_code.upper()) & (df['date'].str.startswith(str(year)))]
-    rmp_year = round(query_year ['dollar_price'].mean(),2)
-    # print (rmp_year)
+    # query_year = df[(df['iso_a3']== country_code.upper()) & (df['date'].str.startswith(str(year)))]
+    # rmp_year = round(query_year ['dollar_price'].mean(),2)
+    # # print (rmp_year)
+    query_year = f'iso_a3 == "{country_code.upper()}" and date > "{year}-01-01" and date < "{year}-12-31"'
+    df_year = df.query(query_year)
+    rmp_year = round(df_year['dollar_price'].mean(),2)
     return rmp_year
 
 def get_big_mac_price_by_country(country_code):
     pass
-    query_country = df[df['iso_a3'] == country_code.upper()]
-    rmp_country = round(query_country ['dollar_price'].mean(),2)
+    query_country = f'iso_a3 == "{country_code.upper()}"'
+    df_country = df.query(query_country)
+    rmp_country = round(df_country['dollar_price'].mean(),2)
     # print (rmp_country)
     return rmp_country
 
@@ -47,7 +51,7 @@ def get_the_most_expensive_big_mac_price_by_year(year):
 
 if __name__ == "__main__":
     pass
-    # get_big_mac_price_by_year(str(input("Enter year: ")), input('Enter country code: '))
-    # get_big_mac_price_by_country((input("Enter country code: ")))
-    # get_the_cheapest_big_mac_price_by_year(str(input('Enter year: ')))
-    # get_the_most_expensive_big_mac_price_by_year(str(input('Enter year: ')))
+    # print(get_big_mac_price_by_year((input("Enter year: ")), input('Enter country code: ')))
+    # print(get_big_mac_price_by_country((input("Enter country code: "))))
+    # print(get_the_cheapest_big_mac_price_by_year(input('Enter year: ')))
+    print(get_the_most_expensive_big_mac_price_by_year(input('Enter year: ')))
