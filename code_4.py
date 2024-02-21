@@ -1,4 +1,13 @@
 import csv
+# try:
+#     import pandas as pd
+# except ImportError as e:
+#     import os
+#     print("Installing pandas re run code after")
+#     os.system("pip install pandas")
+#     # exit(1)
+# finally:
+#     import pandas as pd
 import pandas as pd
 big_mac_file = './big-mac-full-index.csv'
 df = pd.read_csv(big_mac_file)
